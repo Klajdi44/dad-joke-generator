@@ -1,6 +1,6 @@
 {
   "name": "dad-joke-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "./dad-joke.js",
   "type": "module",
