@@ -14,7 +14,7 @@ const getDadJokeMessage = () =>
 const getJoke = async () => {
   const { data, error } = await fetchJoke(apiUrl);
   if (error) return console.log(chalk.bgRed(error));
-  const joke = data?.joke?.joke;
+  const joke = data?.joke;
 
   console.log(chalk.bgGray(joke));
   await sleep(isSingle ? 1000 : 2500);
