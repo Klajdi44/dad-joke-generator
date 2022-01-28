@@ -6,18 +6,19 @@ import { createSpinner } from "nanospinner";
 import { apiUrl } from "./modules/constants/constants.js";
 import { fetchJoke, sleep } from "./modules/globals.js";
 
+const isSingle = process.argv.includes("--single");
+
 const getDadJokeMessage = () =>
   chalkAnimation.rainbow("Getting dad joke").start();
 
 const getJoke = async () => {
-  const {
-    data: { joke: joke },
-    error,
-  } = await fetchJoke(apiUrl);
+  const { data, error } = await fetchJoke(apiUrl);
+  if (error) return console.log(chalk.bgRed(error));
+  const joke = data?.joke?.joke;
 
   console.log(chalk.bgGray(joke));
-  await sleep(3000);
-  hearAnotherJoke();
+  await sleep(isSingle ? 1000 : 2500);
+  !isSingle && hearAnotherJoke();
 };
 
 const hearAnotherJoke = async () => {
